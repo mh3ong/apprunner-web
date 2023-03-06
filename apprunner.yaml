@@ -4,10 +4,11 @@ build:
   commands:
     build: pip install -r requirements.txt
 run:
-  # network:
-  #   port: 8080
-  #   env: PORT
-  # env:
-  #   - name: NAME
-  #     value: "DDPS LAB"
+  network:
+    port: 8080
+    #if not specified env, default value is "PORT"
+    #even if you specified env, default value "PORT" is usable.
+  env:
+    - name: NAME
+      value: "DDPS LAB"
   command: python server.py
