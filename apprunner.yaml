@@ -4,4 +4,10 @@ build:
   commands:
     build: pip install -r requirements.txt
 run:
+  network:
+    port: 8080
+    env: PORT
+  env:
+    - name: NAME
+      value: "DDPS LAB"
   command: python server.py
