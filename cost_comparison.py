@@ -13,12 +13,12 @@ import math
 # - lambda arm 여부
 print("### Lambda Configuration ###")
 requestsPerSecond = int(input("Request per second : "))
-aveargeLambdaDurationMs = int(input("Average lambda duration : "))
+aveargeLambdaDurationMs = int(input("Average lambda duration (ms) : "))
 # applicationMemory = int(input("Application memory : "))
 applicationMemory = 1024
 lambdaArchitectureIsIntel = bool(int(input("1 -> Intel / 0 -> ARM : ")))
 print("### App Runner Configuration ###")
-isTrafficDiffrentInPeakTime = bool(int(input("Is the number of traffic requests number diffrent from peak times? : 1 -> true / 0 -> false")))
+isTrafficDiffrentInPeakTime = bool(int(input("Is the number of traffic requests number diffrent from peak times? \n 1 -> true / 0 -> false : ")))
 if (isTrafficDiffrentInPeakTime):
   peakTrafficHours = int(input("Peak traffic hours : "))
   peakRequestsPerSecond = int(input("Peak time requests per second : "))
@@ -62,7 +62,9 @@ def calcAppRunnerCharge(requestsPerSecond, peakTime=24):
 
 def calcPeakAppRunnerCharge(peakTrafficHours, peakRequestsPerSecond, nonPeakRequestsPerSecond):
   totalPeakAppRunnerCharge = calcAppRunnerCharge(peakRequestsPerSecond, peakTrafficHours)
+  print(totalPeakAppRunnerCharge)
   totalNonPeakAppRunnerCharge = calcAppRunnerCharge(nonPeakRequestsPerSecond, abs(24-peakTrafficHours))
+  print(totalNonPeakAppRunnerCharge)
   totalCharge = totalPeakAppRunnerCharge + totalNonPeakAppRunnerCharge
   return totalCharge
 
