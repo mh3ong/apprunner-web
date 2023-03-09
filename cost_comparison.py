@@ -3,7 +3,7 @@ import math
 # The region is us-east-1 (Virginia).
 ###
 #Default Scenario : 최소한으로 구성 -> vCPU 1개 사용, 메모리 1024MB 사용 (App Runner는 최소 2048MB)
-#                 -> 1초에 100건까지 하나의 Instance(1vCPU, 2GB RAM)에서 처리 가능으로 가정
+#                 -> 1초에 10건까지 하나의 Instance(1vCPU, 2GB RAM)에서 처리 가능으로 가정
 #
 
 ###
@@ -51,7 +51,7 @@ def calcLambdaRequestCharge(monthlyRequests):
 
 def calcAppRunnerCharge(requestsPerSecond, peakTime=24):
   # One Instance can be processing only 100 requests.
-  instanceNumber = math.ceil(requestsPerSecond / 100)
+  instanceNumber = math.ceil(requestsPerSecond / 10)
   # default memory size is 2048MB
   computingMemoryTime = instanceNumber * peakTime * 2
   totalComputingMemoryCharge = computingMemoryTime * 0.007
